@@ -75,8 +75,6 @@
 
     <idea-version since-build="222.4554" />
 
-    <depends optional="true" config-file="plugin.xml">com.intellij.modules.platform</depends>
-
     <actions>
         <action id="org.example.CopyFilePathAndContentAction"
                 class="org.example.actions.CopyFilePathAndContentAction"
