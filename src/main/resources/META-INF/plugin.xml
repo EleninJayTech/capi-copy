@@ -73,7 +73,7 @@
         ]]>
     </change-notes>
 
-    <idea-version since-build="222" until-build="232.*"/>
+    <idea-version since-build="222.4554" />
 
     <depends optional="true">com.intellij.modules.platform</depends>
 
