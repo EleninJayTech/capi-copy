@@ -14,15 +14,14 @@ import org.example.settings.CopyPluginSettings;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
+import java.util.Locale;
 import java.util.ResourceBundle;
-
-import com.intellij.CommonBundle;
 public class CopyFilePathAndContentAction extends AnAction {
 
     private long lastClickedTime = 0; // 마지막 클릭 시간 기록
     private static final long DOUBLE_CLICK_THRESHOLD_MS = 500; // 더블 클릭 기준 (0.5초)
     private static final ResourceBundle BUNDLE =
-            ResourceBundle.getBundle("messages.messages", CommonBundle.getLocale());
+            ResourceBundle.getBundle("messages.messages", Locale.getDefault());
 
     private String getLanguageFromFileName(String fileName) {
         if (fileName.endsWith(".java")) return "java";
