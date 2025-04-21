@@ -1,13 +1,14 @@
 package org.example.settings;
 
+import com.intellij.CommonBundle;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
-import java.util.ResourceBundle;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class CopyPluginConfigurable implements Configurable {
 
@@ -15,7 +16,8 @@ public class CopyPluginConfigurable implements Configurable {
     private JPanel settingsPanel;
     private JRadioButton allOpenFilesButton;
     private JRadioButton selectionOrAllButton;
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("messages.messages");
+    private static final ResourceBundle BUNDLE =
+            ResourceBundle.getBundle("messages.messages", CommonBundle.getLocale());
 
     @Override
     public @Nls(capitalization = Nls.Capitalization.Title) String getDisplayName() {

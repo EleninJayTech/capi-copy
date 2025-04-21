@@ -14,11 +14,15 @@ import org.example.settings.CopyPluginSettings;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
+import java.util.ResourceBundle;
 
+import com.intellij.CommonBundle;
 public class CopyFilePathAndContentAction extends AnAction {
 
     private long lastClickedTime = 0; // 마지막 클릭 시간 기록
     private static final long DOUBLE_CLICK_THRESHOLD_MS = 500; // 더블 클릭 기준 (0.5초)
+    private static final ResourceBundle BUNDLE =
+            ResourceBundle.getBundle("messages.messages", CommonBundle.getLocale());
 
     private String getLanguageFromFileName(String fileName) {
         if (fileName.endsWith(".java")) return "java";
@@ -60,7 +64,7 @@ public class CopyFilePathAndContentAction extends AnAction {
     public void actionPerformed(AnActionEvent event) {
         Project project = event.getProject();
         if (project == null) {
-            showNotification("프로젝트가 로드되지 않았습니다.", NotificationType.ERROR, null);
+            showNotification(BUNDLE.getString("notification.no.project"), NotificationType.ERROR, null);
             return;
         }
 
@@ -74,7 +78,7 @@ public class CopyFilePathAndContentAction extends AnAction {
             // 빠르게 두 번 클릭: 항상 모든 열린 파일 복사
             VirtualFile[] openFiles = FileEditorManager.getInstance(project).getOpenFiles();
             if (openFiles.length == 0) {
-                showNotification("열려 있는 파일이 없습니다.", NotificationType.ERROR, project);
+                showNotification(BUNDLE.getString("notification.no.open.files"), NotificationType.ERROR, project);
                 return;
             }
 
@@ -92,8 +96,7 @@ public class CopyFilePathAndContentAction extends AnAction {
                         filePath, language, fileContent));
             }
 
-            showNotification("🔥 모든 열린 파일을 클립보드에 복사했습니다.", NotificationType.INFORMATION, project);
-
+            showNotification(BUNDLE.getString("notification.copied.all"), NotificationType.INFORMATION, project);
         } else {
             // 한번 클릭: 기존 설정된 옵션으로 복사
             String copyOption = CopyPluginSettings.getInstance().getCopyOption();
@@ -101,7 +104,7 @@ public class CopyFilePathAndContentAction extends AnAction {
             if ("all_open_files".equals(copyOption)) {
                 VirtualFile[] openFiles = FileEditorManager.getInstance(project).getOpenFiles();
                 if (openFiles.length == 0) {
-                    showNotification("열려 있는 파일이 없습니다.", NotificationType.ERROR, project);
+                    showNotification(BUNDLE.getString("notification.no.open.files"), NotificationType.ERROR, project);
                     return;
                 }
 
@@ -119,19 +122,18 @@ public class CopyFilePathAndContentAction extends AnAction {
                             filePath, language, fileContent));
                 }
 
-                showNotification("📂 설정에 따라 열린 모든 파일을 복사했습니다.", NotificationType.INFORMATION, project);
-
+                showNotification(BUNDLE.getString("notification.copied.all"), NotificationType.INFORMATION, project);
             } else {
                 // path_and_content 또는 selection_or_all
                 Editor editor = event.getData(com.intellij.openapi.actionSystem.CommonDataKeys.EDITOR);
                 if (editor == null) {
-                    showNotification("열려 있는 파일이 없습니다.", NotificationType.ERROR, project);
+                    showNotification(BUNDLE.getString("notification.no.open.files"), NotificationType.ERROR, project);
                     return;
                 }
 
                 VirtualFile file = FileDocumentManager.getInstance().getFile(editor.getDocument());
                 if (file == null) {
-                    showNotification("파일을 찾을 수 없습니다.", NotificationType.ERROR, project);
+                    showNotification(BUNDLE.getString("notification.no.file"), NotificationType.ERROR, project);
                     return;
                 }
 
@@ -158,7 +160,7 @@ public class CopyFilePathAndContentAction extends AnAction {
                             filePath, language, fileContent));
                 }
 
-                showNotification("✅ 클립보드에 복사되었습니다.", NotificationType.INFORMATION, project);
+                showNotification(BUNDLE.getString("notification.copied.single"), NotificationType.INFORMATION, project);
             }
         }
 
