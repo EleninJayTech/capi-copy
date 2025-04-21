@@ -1,0 +1,14 @@
+<svg width="40" height="40" viewBox="0 0 40 40"
+     xmlns="http://www.w3.org/2000/svg" fill="none">
+	<!-- 클립보드 배경 -->
+	<rect x="10" y="6" width="20" height="28" rx="3" fill="#fff" stroke="#888" stroke-width="1.5"/>
+
+	<!-- 상단 클립 -->
+	<rect x="14" y="4" width="12" height="4" rx="1" fill="#B0B0B0" stroke="#666" stroke-width="1"/>
+
+	<!-- 코드 블럭 느낌 -->
+	<text x="20" y="20" text-anchor="middle" font-size="10" font-family="monospace" fill="#333">{...}</text>
+
+	<!-- 점선 느낌 줄 -->
+	<line x1="12" y1="26" x2="28" y2="26" stroke="#AAA" stroke-dasharray="2,2" stroke-width="1"/>
+</svg>

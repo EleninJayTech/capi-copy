@@ -1,0 +1,99 @@
+<idea-plugin>
+    <id>com.elenintech.capicopy</id>
+    <name>Capi Copy</name>
+    <version>1.0.0</version>
+
+    <vendor email="eleninjaytech@gmail.com" url="https://eleninjaytech.github.io/public">ELENIN Tech</vendor>
+
+    <description>
+        <![CDATA[
+        <p><strong>🌐 [🇺🇸 English]</strong></p>
+        <p><strong>Capi Copy</strong> helps you copy the current file’s <em>path and content</em> — or all open files — to the clipboard in a format ready for GPT prompts.</p>
+        <ul>
+            <li>📄 Copy current file path + content</li>
+            <li>🔋 Copy selection if available</li>
+            <li>📂 Double-click to copy all open files</li>
+            <li>⚙️ Configurable in <code>Settings &gt; Tools &gt; Capi Copy Settings</code></li>
+            <li>💡 Shortcut: <code>Ctrl + Shift + Alt + Q</code></li>
+        </ul>
+
+        <hr/>
+
+        <p><strong>🌐 [🇰🇷 한국어]</strong></p>
+        <p><strong>Capi Copy</strong>는 현재 파일의 <em>경로와 내용</em> 또는 열려 있는 모든 파일을 GPT 프롬프트에 붙여넣기 좋은 형식으로 클립보드에 복사할 수 있도록 도와주는 플러그인입니다.</p>
+        <ul>
+            <li>📄 현재 파일 경로 + 내용 복사</li>
+            <li>🔋 선택한 코드만 복사 (있을 경우)</li>
+            <li>📂 빠르게 두 번 클릭 시 열린 모든 파일 복사</li>
+            <li>⚙️ 설정 위치: <code>Settings &gt; Tools &gt; Capi Copy Settings</code></li>
+            <li>💡 단축키: <code>Ctrl + Shift + Alt + Q</code></li>
+        </ul>
+
+        <hr/>
+
+        <p><strong>🌐 [🇯🇵 日本語]</strong></p>
+        <p><strong>Capi Copy</strong> は、現在のファイルまたはすべての開いているファイルの <em>パスと内容</em> を GPT プロンプトに貼り付けやすい形式でクリップボードにコピーできるプラグインです。</p>
+        <ul>
+            <li>📄 現在のファイルのパス + 内容をコピー</li>
+            <li>🔋 選択範囲があればその部分のみコピー</li>
+            <li>📂 ダブルクリックで全ファイルをコピー</li>
+            <li>⚙️ 設定場所: <code>Settings &gt; Tools &gt; Capi Copy Settings</code></li>
+            <li>💡 ショートカット: <code>Ctrl + Shift + Alt + Q</code></li>
+        </ul>
+
+        <hr/>
+
+        <p><strong>🌐 [🇨🇳 简体中文]</strong></p>
+        <p><strong>Capi Copy</strong> 插件可以将当前文件或所有打开文件的 <em>路径和内容</em>，以适合粘贴到 GPT 提示中的格式复制到剪贴板中。</p>
+        <ul>
+            <li>📄 复制当前文件路径 + 内容</li>
+            <li>🔋 如果有选中代码则复制选中部分</li>
+            <li>📂 双击复制所有打开的文件</li>
+            <li>⚙️ 设置位置: <code>Settings &gt; Tools &gt; Capi Copy Settings</code></li>
+            <li>💡 快捷键: <code>Ctrl + Shift + Alt + Q</code></li>
+        </ul>
+
+        <hr/>
+
+        <p><strong>🌐 [🇩🇪 Deutsch]</strong></p>
+        <p><strong>Capi Copy</strong> hilft Ihnen, den <em>Pfad und Inhalt</em> der aktuellen Datei oder aller geöffneten Dateien in ein Format zu kopieren, das ideal für GPT-Eingabeaufforderungen geeignet ist.</p>
+        <ul>
+            <li>📄 Pfad + Inhalt der aktuellen Datei kopieren</li>
+            <li>🔋 Auswahl kopieren (falls vorhanden)</li>
+            <li>📂 Doppelklick: alle geöffneten Dateien kopieren</li>
+            <li>⚙️ Konfigurierbar unter <code>Settings &gt; Tools &gt; Capi Copy Settings</code></li>
+            <li>💡 Tastenkürzel: <code>Ctrl + Shift + Alt + Q</code></li>
+        </ul>
+    ]]>
+    </description>
+
+    <change-notes>
+        <![CDATA[
+        Initial release with path/content copy options and double-click multi-file support.
+        ]]>
+    </change-notes>
+
+    <idea-version since-build="222" until-build="232.*"/>
+
+    <depends optional="true">com.intellij.modules.platform</depends>
+
+    <actions>
+        <action id="org.example.CopyFilePathAndContentAction"
+                class="org.example.actions.CopyFilePathAndContentAction"
+                text="Copy File Path &amp; Content"
+                description="Copies the current file path and content to clipboard">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift alt Q" />
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Custom Notification Group" displayType="BALLOON" />
+
+        <applicationConfigurable
+                id="org.example.copyfilepathandcontent.settings"
+                displayName="Capi Copy Settings"
+                implementation="org.example.settings.CopyPluginConfigurable"
+                groupId="tools" />
+    </extensions>
+</idea-plugin>
