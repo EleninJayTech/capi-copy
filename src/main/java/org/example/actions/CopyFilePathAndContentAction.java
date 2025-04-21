@@ -98,43 +98,68 @@ public class CopyFilePathAndContentAction extends AnAction {
             // 한번 클릭: 기존 설정된 옵션으로 복사
             String copyOption = CopyPluginSettings.getInstance().getCopyOption();
 
-            Editor editor = event.getData(com.intellij.openapi.actionSystem.CommonDataKeys.EDITOR);
-            if (editor == null) {
-                showNotification("열려 있는 파일이 없습니다.", NotificationType.ERROR, project);
-                return;
-            }
+            if ("all_open_files".equals(copyOption)) {
+                VirtualFile[] openFiles = FileEditorManager.getInstance(project).getOpenFiles();
+                if (openFiles.length == 0) {
+                    showNotification("열려 있는 파일이 없습니다.", NotificationType.ERROR, project);
+                    return;
+                }
 
-            VirtualFile file = FileDocumentManager.getInstance().getFile(editor.getDocument());
-            if (file == null) {
-                showNotification("파일을 찾을 수 없습니다.", NotificationType.ERROR, project);
-                return;
-            }
+                for (VirtualFile file : openFiles) {
+                    Document document = FileDocumentManager.getInstance().getDocument(file);
+                    if (document == null) continue;
 
-            String filePath = file.getPath();
-            String fileName = file.getName();
-            String fileContent = editor.getDocument().getText();
-            String language = getLanguageFromFileName(fileName);
+                    String filePath = file.getPath();
+                    String fileName = file.getName();
+                    String fileContent = document.getText();
+                    String language = getLanguageFromFileName(fileName);
 
-            if ("selection_or_all".equals(copyOption)) {
-                String selectedText = editor.getSelectionModel().getSelectedText();
-                if (selectedText != null && !selectedText.isEmpty()) {
-                    clipboardText.append(String.format(
-                            "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
-                            filePath, language, selectedText));
-                } else {
                     clipboardText.append(String.format(
                             "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
                             filePath, language, fileContent));
                 }
-            }
-            else {
-                // 기본 동작: path_and_content
-                clipboardText.append(String.format(
-                        "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
-                        filePath, language, fileContent));
-            }
 
-            showNotification("✅ 클립보드에 복사되었습니다.", NotificationType.INFORMATION, project);
+                showNotification("📂 설정에 따라 열린 모든 파일을 복사했습니다.", NotificationType.INFORMATION, project);
+
+            } else {
+                // path_and_content 또는 selection_or_all
+                Editor editor = event.getData(com.intellij.openapi.actionSystem.CommonDataKeys.EDITOR);
+                if (editor == null) {
+                    showNotification("열려 있는 파일이 없습니다.", NotificationType.ERROR, project);
+                    return;
+                }
+
+                VirtualFile file = FileDocumentManager.getInstance().getFile(editor.getDocument());
+                if (file == null) {
+                    showNotification("파일을 찾을 수 없습니다.", NotificationType.ERROR, project);
+                    return;
+                }
+
+                String filePath = file.getPath();
+                String fileName = file.getName();
+                String fileContent = editor.getDocument().getText();
+                String language = getLanguageFromFileName(fileName);
+
+                if ("selection_or_all".equals(copyOption)) {
+                    String selectedText = editor.getSelectionModel().getSelectedText();
+                    if (selectedText != null && !selectedText.isEmpty()) {
+                        clipboardText.append(String.format(
+                                "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                                filePath, language, selectedText));
+                    } else {
+                        clipboardText.append(String.format(
+                                "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                                filePath, language, fileContent));
+                    }
+                } else {
+                    // 기본 path_and_content
+                    clipboardText.append(String.format(
+                            "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                            filePath, language, fileContent));
+                }
+
+                showNotification("✅ 클립보드에 복사되었습니다.", NotificationType.INFORMATION, project);
+            }
         }
 
         Toolkit.getDefaultToolkit()
