@@ -23,7 +23,7 @@ dependencies {
 // 설정 정보
 patchPluginXml {
     sinceBuild = '222'
-    untilBuild = '999.*'
+    untilBuild = '251.*'
 }
 
 tasks.withType(JavaCompile).configureEach {
