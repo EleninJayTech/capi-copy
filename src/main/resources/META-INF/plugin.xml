@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.elenintech.capicopy</id>
     <name>Capi Copy</name>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <depends>com.intellij.modules.platform</depends>
 
     <vendor email="eleninjaytech@gmail.com" url="https://eleninjaytech.github.io/public">ELENIN Tech</vendor>
