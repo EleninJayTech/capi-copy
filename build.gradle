@@ -23,7 +23,7 @@ dependencies {
 // 설정 정보
 patchPluginXml {
     sinceBuild = '222'
-    untilBuild = '251.*' // 또는 '999.*'로 설정하면 모든 최신 버전 허용됨
+    untilBuild = '999.*'
 }
 
 tasks.withType(JavaCompile).configureEach {
