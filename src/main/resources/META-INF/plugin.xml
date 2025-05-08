@@ -74,8 +74,6 @@
         ]]>
     </change-notes>
 
-    <idea-version since-build="222.4554" />
-
     <actions>
         <action id="org.example.CopyFilePathAndContentAction"
                 class="org.example.actions.CopyFilePathAndContentAction"

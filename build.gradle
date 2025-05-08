@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.13.3'
+    id 'org.jetbrains.intellij' version '1.17.3'
 }
 
 group = 'com.example'
@@ -16,13 +16,13 @@ intellij {
     plugins = ['java']
 }
 
-dependencies {
-    implementation 'org.jetbrains:annotations:23.0.0'
-}
-
-// 설정 정보
 patchPluginXml {
     sinceBuild = '222'
+    untilBuild = '252.*'
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:23.0.0'
 }
 
 tasks.withType(JavaCompile).configureEach {
