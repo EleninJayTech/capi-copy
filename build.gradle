@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '1.0.5'
+version = '1.0.6'
 
 repositories {
     mavenCentral()
@@ -23,7 +23,6 @@ dependencies {
 // 설정 정보
 patchPluginXml {
     sinceBuild = '222'
-    untilBuild = '251.*'
 }
 
 tasks.withType(JavaCompile).configureEach {
