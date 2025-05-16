@@ -8,6 +8,14 @@
 
 ---
 
+## ☕ 후원하기 / Support This Plugin
+
+[![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/eleninjaytech)
+
+이 플러그인이 도움이 되셨다면 커피 한 잔으로 응원해 주세요 😊
+
+---
+
 ## 🇰🇷 기능 요약 (Korean)
 
 ### 🧩 주요 기능
