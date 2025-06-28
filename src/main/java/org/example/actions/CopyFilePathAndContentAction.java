@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
 public class CopyFilePathAndContentAction extends AnAction {
 
     private long lastClickedTime = 0; // 마지막 클릭 시간 기록
@@ -91,7 +92,7 @@ public class CopyFilePathAndContentAction extends AnAction {
                 String language = getLanguageFromFileName(fileName);
 
                 clipboardText.append(String.format(
-                        "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                        "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
                         filePath, language, fileContent));
             }
 
@@ -117,7 +118,7 @@ public class CopyFilePathAndContentAction extends AnAction {
                     String language = getLanguageFromFileName(fileName);
 
                     clipboardText.append(String.format(
-                            "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                            "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
                             filePath, language, fileContent));
                 }
 
@@ -145,17 +146,17 @@ public class CopyFilePathAndContentAction extends AnAction {
                     String selectedText = editor.getSelectionModel().getSelectedText();
                     if (selectedText != null && !selectedText.isEmpty()) {
                         clipboardText.append(String.format(
-                                "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                                "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
                                 filePath, language, selectedText));
                     } else {
                         clipboardText.append(String.format(
-                                "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                                "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
                                 filePath, language, fileContent));
                     }
                 } else {
                     // 기본 path_and_content
                     clipboardText.append(String.format(
-                            "---\n\n📄 %s\n\n```%s\n%s\n```\n\n\n",
+                            "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
                             filePath, language, fileContent));
                 }
 
