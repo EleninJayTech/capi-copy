@@ -74,6 +74,10 @@ public class CopyFilePathAndContentAction extends AnAction {
 
         StringBuilder clipboardText = new StringBuilder();
 
+        // 공통 포맷 정의
+        String fileCopyFormat = "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n";
+        String selectionCopyFormat = "--- START FILE ---\nFile Path: %s:%d-%d\n\n```%s\n%s\n```\n--- END FILE ---\n\n";
+
         if (isDoubleClick) {
             // 빠르게 두 번 클릭: 항상 모든 열린 파일 복사
             VirtualFile[] openFiles = FileEditorManager.getInstance(project).getOpenFiles();
@@ -92,7 +96,7 @@ public class CopyFilePathAndContentAction extends AnAction {
                 String language = getLanguageFromFileName(fileName);
 
                 clipboardText.append(String.format(
-                        "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
+                        fileCopyFormat,
                         filePath, language, fileContent));
             }
 
@@ -118,7 +122,7 @@ public class CopyFilePathAndContentAction extends AnAction {
                     String language = getLanguageFromFileName(fileName);
 
                     clipboardText.append(String.format(
-                            "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
+                            fileCopyFormat,
                             filePath, language, fileContent));
                 }
 
@@ -131,7 +135,8 @@ public class CopyFilePathAndContentAction extends AnAction {
                     return;
                 }
 
-                VirtualFile file = FileDocumentManager.getInstance().getFile(editor.getDocument());
+                Document document = editor.getDocument();
+                VirtualFile file = FileDocumentManager.getInstance().getFile(document);
                 if (file == null) {
                     showNotification(BUNDLE.getString("notification.no.file"), NotificationType.ERROR, project);
                     return;
@@ -139,24 +144,32 @@ public class CopyFilePathAndContentAction extends AnAction {
 
                 String filePath = file.getPath();
                 String fileName = file.getName();
-                String fileContent = editor.getDocument().getText();
                 String language = getLanguageFromFileName(fileName);
 
                 if ("selection_or_all".equals(copyOption)) {
                     String selectedText = editor.getSelectionModel().getSelectedText();
                     if (selectedText != null && !selectedText.isEmpty()) {
+                        // 선택된 텍스트가 있을 경우, 시작 및 마지막 줄 번호 포함
+                        int startOffset = editor.getSelectionModel().getSelectionStart();
+                        int endOffset = editor.getSelectionModel().getSelectionEnd();
+                        int startLine = document.getLineNumber(startOffset) + 1; // 0-based to 1-based
+                        int endLine = document.getLineNumber(endOffset) + 1; // 0-based to 1-based
+
                         clipboardText.append(String.format(
-                                "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
-                                filePath, language, selectedText));
+                                selectionCopyFormat,
+                                filePath, startLine, endLine, language, selectedText));
                     } else {
+                        // 선택된 텍스트가 없을 경우, 전체 내용 복사
+                        String fileContent = document.getText();
                         clipboardText.append(String.format(
-                                "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
+                                fileCopyFormat,
                                 filePath, language, fileContent));
                     }
                 } else {
                     // 기본 path_and_content
+                    String fileContent = document.getText();
                     clipboardText.append(String.format(
-                            "--- START FILE ---\nFile Path: %s\n\n```%s\n%s\n```\n--- END FILE ---\n\n",
+                            fileCopyFormat,
                             filePath, language, fileContent));
                 }
 

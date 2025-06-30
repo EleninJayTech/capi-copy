@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 public final class CopyPluginSettings implements PersistentStateComponent<CopyPluginSettings.State> {
 
     public static class State {
-        public String copyOption = "path_and_content"; // 기본값: 파일 경로 + 내용
+        public String copyOption = "selection_or_all";
     }
 
     private State myState = new State();
