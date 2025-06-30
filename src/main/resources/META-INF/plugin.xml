@@ -8,32 +8,36 @@
 
     <description>
         <![CDATA[
-        <h3>Tired of manually formatting code for AI assistants like ChatGPT or Gemini?</h3>
-        <p><strong>Capi Copy is the essential copy-and-paste tool for developers.</strong> It formats your code, including file paths and line numbers, perfectly for any AI prompt with a single shortcut. Stop wasting time and boost your productivity!</p>
+        Tired of manually formatting code for ChatGPT or Gemini? Capi Copy is the essential tool that copies your code, file path, and line numbers into a perfect AI-ready prompt with a single shortcut.
 
-        <p style="text-align:center;">
-            </p>
+        Capi Copy helps you copy the current file’s path and content, or all open files, to the clipboard in a format ready for GPT prompts. This is perfect for developers who frequently use AI-powered coding assistants.
 
-        <h3>Key Features & Benefits</h3>
+        <h3>Key Features</h3>
         <ul>
-            <li>
-                <strong>✨ AI-Optimized Prompts:</strong> Instantly formats file paths, line numbers, and code into a structure that Large Language Models (LLM) like GPT and Gemini understand best. Get better, more accurate answers from your AI assistant.
-            </li>
-            <li>
-                <strong>⚡️ Precise Context at Your Fingertips:</strong> Need to ask about a specific part of your code? Simply select the text to copy it with exact line numbers, giving your AI the precise context it needs for debugging or refactoring.
-            </li>
-            <li>
-                <strong>🚀 Boost Your Workflow:</strong> Double-press the shortcut to copy all open files at once. Drastically reduce the time spent on manual copy-pasting and stay focused on what truly matters: coding. This is a must-have for prompt engineering.
-            </li>
-            <li>
-                <strong>🎨 Seamless Integration:</strong> Comes with beautiful icons that adapt to both light and dark IDE themes for a native look and feel.
-            </li>
+            <li>Copy current file path and content.</li>
+            <li>Copy only the selected code if a selection exists.</li>
+            <li>Double-click the shortcut to copy all open files instantly.</li>
+            <li>Configurable options in 'Settings > Tools > Capi Copy Settings'.</li>
+            <li>Default shortcut: <code>Ctrl + Shift + Alt + Q</code>.</li>
         </ul>
 
         <hr/>
-        <p><strong>💛 If you enjoy this productivity tool, please support me with a <a href="https://www.buymeacoffee.com/eleninjaytech">cup of coffee</a>!</strong></p>
+        <p><strong>💛 If you enjoy this plugin, please support me with a <a href="https://www.buymeacoffee.com/eleninjaytech">cup of coffee</a>!</strong></p>
         <hr/>
-        <p><i>Keywords: GPT, Gemini, AI Assistant, ChatGPT, LLM, Prompt, Prompt Engineering, Generative AI, Copy Paste, Developer Tools, Productivity, Code Tools, Editor</i></p>
+
+        <h3>🌐 Supported Languages</h3>
+
+        <p><strong>[🇰🇷 한국어]</strong></p>
+        <p>Capi Copy는 현재 파일의 경로와 내용 또는 열려 있는 모든 파일을 GPT 프롬프트에 붙여넣기 좋은 형식으로 클립보드에 복사할 수 있도록 도와주는 플러그인입니다.</p>
+
+        <p><strong>[🇯🇵 日本語]</strong></p>
+        <p>Capi Copy は、現在のファイルまたはすべての開いているファイルのパスと内容を GPT プロンプトに貼り付けやすい形式でクリップボードにコピーできるプラグインです。</p>
+
+        <p><strong>[🇨🇳 简体中文]</strong></p>
+        <p>Capi Copy 插件可以将当前文件或所有打开文件的路径和内容，以适合粘贴到 GPT 提示中的格式复制到剪贴板中。</p>
+
+        <p><strong>[🇩🇪 Deutsch]</strong></p>
+        <p>Capi Copy hilft Ihnen, den Pfad und Inhalt der aktuellen Datei oder aller geöffneten Dateien in ein Format zu kopieren, das ideal für GPT-Eingabeaufforderungen geeignet ist.</p>
         ]]>
     </description>
 
